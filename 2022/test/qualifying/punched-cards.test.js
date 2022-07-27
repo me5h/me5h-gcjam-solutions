@@ -4,35 +4,29 @@ describe('splitInput', () => {
     test('sample.in', () => {
         expect(
             punchedCards.splitInput(`3
-one
-two
-three`.split(/\r?\n/))
+3 4
+2 2
+2 3`.split(/\r?\n/))
         )
         .toStrictEqual(
             [
-                'one',
-                'two',
-                'three',
+                [3,4],
+                [2,2],
+                [2,3],
             ]
         );
     });
 });
 
 describe('solve', () => {
-    test('one', () => {
-        expect(punchedCards.solve('one')).toBe('one');
-    });
-
-    test('two', () => {
-        expect(punchedCards.solve('two')).toBe('two');
-    });
-
-    test('three', () => {
-        expect(punchedCards.solve('three')).toBe('three');
-    });
-
-    test('four', () => {
-        expect(punchedCards.solve('four')).toBe('four');
+    test('[3,4]', () => {
+        expect(punchedCards.solve([3,4])).toBe(`..+-+-+-+
+..|.|.|.|
++-+-+-+-+
+|.|.|.|.|
++-+-+-+-+
+|.|.|.|.|
++-+-+-+-+`);
     });
 });
 
@@ -40,15 +34,32 @@ describe('solveInputs', () => {
     test('sample.in', () => {
         expect(
             punchedCards.solveInputs(`3
-one
-two
-three`.split(/\r?\n/))
+3 4
+2 2
+2 3`.split(/\r?\n/))
         )
         .toStrictEqual(
             [
-                'Case #1: one',
-                'Case #2: two',
-                'Case #3: three',
+                `Case #1:
+..+-+-+-+
+..|.|.|.|
++-+-+-+-+
+|.|.|.|.|
++-+-+-+-+
+|.|.|.|.|
++-+-+-+-+`,
+                `Case #2:
+..+-+
+..|.|
++-+-+
+|.|.|
++-+-+`,
+                `Case #3:
+..+-+-+
+..|.|.|
++-+-+-+
+|.|.|.|
++-+-+-+`,
             ]
         );
     });
